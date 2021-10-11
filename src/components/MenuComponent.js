@@ -1,7 +1,6 @@
 import React, {Component} from "react";
 import {Card, CardImg, CardText, CardBody, CardTitle, CardImgOverlay} from 'reactstrap'
-//src/assests/images/zucchipakoda.png
-
+import DishDeatilComponent from './DishDetailComponent'
 class Menu extends Component {
   constructor(props) {
     super(props);
@@ -14,7 +13,6 @@ class Menu extends Component {
   }
 
   renderDish(dish) {
-    console.log(dish)    
     if (dish == null) {
       return (
         <div></div>
@@ -50,7 +48,8 @@ class Menu extends Component {
             {menu}
         </div>
         <div className="row">
-         { this.renderDish(this.state.selectedDish)}
+         <DishDeatilComponent dish = {this.state.selectedDish}/>
+         {/* { this.renderDish(this.state.selectedDish)} */}
         </div>
       </div>
     );
