@@ -1,12 +1,7 @@
 import React, {Component} from "react";
-import {Card, CardImg, CardText, CardBody, CardTitle, CardImgOverlay} from 'reactstrap'
+import {Card, CardImg, CardText, CardBody, CardTitle} from 'reactstrap'
 
 class DishDeatilComponent extends Component {
-  constructor(props) {
-    super(props);
-  }
-  
-  
   renderDish(dish) {
     if (dish == null) {
       return (
