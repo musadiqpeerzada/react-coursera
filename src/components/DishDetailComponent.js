@@ -9,8 +9,6 @@ const required =(val) =>val&&val.length;
 const maxLength = (len)=>(val)=>!(val)||(val.length<=len)
 const minLength = (len)=>(val)=>(val)&&(val.length>=len)
 
-
-
 class CommentForm extends Component {
     constructor(props)
     {
@@ -32,7 +30,7 @@ class CommentForm extends Component {
     submitHandle=(values)=>
     {
         this.handleToggle();
-        
+        this.props.addComment(this.props.dishId, values.rating, values.author, values.comment);        
     }
     render() { 
         return ( 
@@ -120,7 +118,7 @@ const Dishdetail = (props)=>{
         const {dish,comments} = props;
         return ( 
             <React.Fragment>  
-            {renderDish(dish,comments)}
+            {renderDish(dish,comments, props)}
             </React.Fragment>
         );    
 }
@@ -135,7 +133,7 @@ function formatDate(date)
 }
 
 
-const RenderComments =(comments) =>
+const RenderComments =(comments, addComment, dishId) =>
     {
 
         if (comments!=null)
@@ -154,7 +152,7 @@ const RenderComments =(comments) =>
             return(
                 <ul className="list-unstyled">
                 {com}
-                <CommentForm />
+                <CommentForm dishId={dishId} addComment={addComment} />
                 </ul>
                 
             )
@@ -164,7 +162,7 @@ const RenderComments =(comments) =>
         }
     }
 
-const renderDish=(dish,comments)=>
+const renderDish=(dish,comments, props)=>
     {
         if (dish!=null)
         {
@@ -192,7 +190,7 @@ const renderDish=(dish,comments)=>
             </div>
             <div className="col-12 col-md-5 m-1" >
             <h4>Comments</h4>
-            {RenderComments(comments)}
+            {RenderComments(comments, props.addComment, props.dish.id)}
             </div>
             </div>
             </div >
